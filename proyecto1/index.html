@@ -1,0 +1,96 @@
+# Accesibility Testing Report: Splitwise
+
+Automated testing using Lighthouse, Manual Testing, Assistive Technology Testing using NDA
+
+**Issue 1: Navigation and Focus Order**
+
+- **Description**: The tab navigation order on the Home page does not follow the DOM structure, resulting in a confusing user experience. After selecting the "Tweet" button, focus skips to elements on the right side (e.g., download links, expense buttons) instead of logically proceeding to "Add an Expense" and "Settle Debts." Additionally, the dropdown menu is skipped entirely in the tab order. Focus should move intuitively from left to right, top to bottom.
+- **Attachment:**
+
+[issue 1.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/6ea2c686-5fbc-47d3-b66e-914db118957e/75183133-572d-453d-be13-f7ff7f2c5746/issue_1.mp4)
+
+- **Location**: Home Page
+- **Impact Level**: High
+- **WCAG Criterion**: 2.4.3 – Focus Order (Level A)
+- **Solution Recommendation**:
+    - **Adjust DOM Order**: Align the HTML structure with logical tabbing sequence.
+    - **Tabindex Management**: Assign `tabindex="0"` to essential interactive elements, and avoid positive tabindex values to maintain natural tab flow.
+    - **CSS Adjustments**: Apply `display: none` and `visibility: hidden` to elements that should not receive focus.
+    
+
+---
+
+**Issue 2: Focus Visibility**
+
+- **Description**: Several interactive elements (e.g., “Splitwise,” “Control Panel” “Recent Activity,” “All Expenses,” “Add,” and username) lack visible focus indicators, which can hinder navigation for keyboard users and those relying on assistive technology.
+- **Attachment:**
+
+[issue 2.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/6ea2c686-5fbc-47d3-b66e-914db118957e/b5fecc86-ce52-4f18-ab1a-f83ec9a63449/issue_2.mp4)
+
+- **Location**: Home Page
+- **Impact Level**: High
+- **WCAG Criterion**:
+    - 2.4.7 – Focus Visible (Level AA)
+    - 2.1.1 – Keyboard (Level A)
+- **Solution Recommendation**:
+    - **Add Focus Indicators**: Implement a visible border or focus ring on each focusable element.
+    - **Ensure Dropdown Focus**: Include dropdown elements in the tab sequence to improve keyboard accessibility.
+
+---
+
+---
+
+**Issue 3: Link Purpose Clarity**
+
+- **Description**: Links such as "SplitWise," "Download on App Store," and "Get it on Google Play" lack accessible, discernible names, making it difficult for screen readers to convey their purpose.
+- **Attachment:**
+
+[issue 3.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/6ea2c686-5fbc-47d3-b66e-914db118957e/5bc63c1c-5a0c-45a7-9679-6a31d7cb3894/issue_3.mp4)
+
+- **Location**: Main Page Links
+- **Impact Level**: Medium-High
+- **WCAG Criterion**: 2.4.4 – Link Purpose (In Context) (Level A)
+- **Solution Recommendation**:
+    - **Add ARIA Labels**: Provide descriptive labels like `aria-label="Go to SplitWise"` for better clarity.
+
+---
+
+---
+
+**Issue 4: Color Contrast Insufficiency**
+
+- **Description**: The color combination of text (#999) on a white background (#FFFFFF) does not meet WCAG contrast standards for readability, failing AA contrast requirements for both regular and large text.
+- **Attachment:**
+
+![issue.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/6ea2c686-5fbc-47d3-b66e-914db118957e/d174c16e-05be-40b0-a8f7-bdbce0a88e6f/issue.png)
+
+![issue.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/6ea2c686-5fbc-47d3-b66e-914db118957e/6fcc22bb-f71a-42bb-afb1-4df315f7009b/issue.png)
+
+![splwise.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/6ea2c686-5fbc-47d3-b66e-914db118957e/77582154-9a1d-42c3-9c34-36d94767d4ab/splwise.png)
+
+- **Location**: Interface areas with light grey text on white background
+- **Impact Level**: High
+- **WCAG Criterion**:
+    - 1.4.3 – Contrast (Minimum) (Level AA)
+    - 1.4.6 – Contrast (Enhanced) (Level AAA)
+- **Solution Recommendation**:
+    - **Use Darker Text Colors**: Adjust text color to improve contrast to at least 4.5:1 for standard text and 7:1 for enhanced contrast.
+    - **Contrast Check Tools**: Verify changes with WebAIM Contrast Checker.
+
+---
+
+**Issue 5: CAPTCHA Accessibility and Timing**
+
+- **Description**: The CAPTCHA verification only offers audio in English, making it inaccessible for non-English speakers. Additionally, no option exists to extend the CAPTCHA’s time limit, affecting users with cognitive or motor disabilities.
+- **Attachment:**
+
+[issue 6.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/6ea2c686-5fbc-47d3-b66e-914db118957e/0ccc3caa-ab51-413e-854c-99e8ad295e0e/issue_6.mp4)
+
+- **Location**: CAPTCHA Verification on Registration/Login Page
+- **Impact Level**: High
+- **WCAG Criterion**:
+    - 3.1.2 – Language of Parts (Level AA)
+    - 2.2.1 – Timing Adjustable (Level A)
+- **Solution Recommendation**:
+    - **Multi-language Support**: Offer CAPTCHA audio in multiple languages.
+    - **Provide Time Extensions**: Allow users to extend time limits or retry without penalty.
